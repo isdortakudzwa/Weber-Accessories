@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Apple from '../src/components/images/apple.png';
-import flowers from '../src/components/images/flowers.png';
-import phone from '../src/components/images/phone.png';
+import Apple from '../src/pages/images/apple.png';
+import flowers from '../src/pages/images/flowers.png';
+import phone from '../src/pages/images/phone.png';
 import Footer from './footer';
 import { Link } from 'react-router-dom';
 

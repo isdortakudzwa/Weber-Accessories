@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './App.css'; // Assuming you have your CSS in App.css
-import cart from './components/images/mage_shopping-cart-fill1.png';
+import cart from './pages/images/mage_shopping-cart-fill1.png';
 
 const Navbar = ({ currentBannerIndex }) => {
   const navigate = useNavigate(); // Initialize useNavigate

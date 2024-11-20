@@ -1,62 +1,89 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import Apple from '../src/components/images/apple.png';
-import flowers from '../src/components/images/flowers.png';
-import phone from '../src/components/images/phone.png';
+import React, { useState } from 'react';
+import './savy.css';
+
+// Import your images
+import Apple from '../src/pages/images/apple.png';
+import Flowers from '../src/pages/images/flowers.png';
+import Phone from '../src/pages/images/phone.png';
 
 const smartWatches = [
   {
     id: 1,
-    name: 'Apple Series 4 For Her',
-    image: flowers,
-    features: 'Bluetooth, GPS & Waterproof',
-    price: 45.79,
-    description: 'The Apple Series 4 is a stylish smartwatch designed for women. It features Bluetooth connectivity, GPS tracking, and is waterproof, making it ideal for daily use and fitness activities.',
+    image: Flowers,
+    title: "Apple Series 4 For Her",
+    features: "Bluetooth, GPS & Waterproof",
+    price: "$45.79",
+    description: "The Apple Series 4 is a perfect blend of style and technology. It's designed for her, offering Bluetooth connectivity, GPS tracking, and is waterproof for all your adventures."
   },
   {
     id: 2,
-    name: 'Samsung S10 Ultra Lacrado',
-    image: phone,
-    features: 'Breathable Bands, Camera',
-    price: 45.79,
-    description: 'The Samsung S10 Ultra Lacrado comes with breathable bands and an integrated camera. Perfect for capturing moments on the go and maintaining connectivity.',
+    image: Phone,
+    title: "Samsung S10 Ultra Lacrado",
+    features: "Breathable Bands, Camera",
+    price: "$45.79",
+    description: "The Samsung S10 Ultra features breathable bands and an impressive camera. Ideal for those who love to capture moments on the go."
   },
   {
     id: 3,
-    name: 'Apple Ultra Smart Watch',
     image: Apple,
-    features: 'IP67 Waterproof, GPS & WiFi',
-    price: 45.79,
-    description: 'The Apple Ultra Smart Watch features an IP67 waterproof rating, GPS functionality, and WiFi connectivity, making it a top choice for tech-savvy individuals.',
+    title: "Apple Ultra Smart Watch",
+    features: "Ip67 Waterproof, GPS & Wifi",
+    price: "$45.79",
+    description: "The Apple Ultra Smart Watch is built to withstand the elements with IP67 waterproofing. Stay connected with GPS and Wifi capabilities."
   },
 ];
 
-function Savy() {
-  const navigate = useNavigate(); // Initialize the navigate function
+function TechSavyWatches() {
+  const [selectedWatch, setSelectedWatch] = useState(null);
 
-  const handleCardClick = (id) => {
-    navigate(`/watch/${id}`); // Navigate to the detailed view with the watch ID
+  const openModal = (watch) => {
+    setSelectedWatch(watch);
+  };
+
+  const closeModal = () => {
+    setSelectedWatch(null);
   };
 
   return (
-    <div>
-      <div className="tech-savy">
-        <h2 className='tech-h2'>All Tech-Savvy Smart Watches</h2>
+    <div className="tech-watches-wrapper">
+      <h2 className="smart-watches-heading">Smart Watches</h2>
 
-        <div className="techy">
-          {smartWatches.map((watch) => (
-            <div className="techy-card" key={watch.id} onClick={() => handleCardClick(watch.id)}>
-              <img src={watch.image} alt="watchimg" className='savvy-img' />
-              <h3 className='film-h3'>{watch.name}</h3>
-              <h4>{watch.features}</h4>
-              <p>${watch.price.toFixed(2)}</p>
-              <button>View More</button>
+      <div className="smart-watches-grid">
+        {smartWatches.map((watch) => (
+          <div key={watch.id} className="smart-watch-card">
+            <img src={watch.image} alt={watch.title} className="smart-watch-image" />
+            <div className="smart-watch-info">
+              <h3 className="smart-watch-title">{watch.title}</h3>
+              <p className="smart-watch-features">{watch.features}</p>
+              <p className="smart-watch-price">{watch.price}</p>
+              <button
+                className="smart-watch-btn"
+                onClick={() => openModal(watch)}
+              >
+                View More
+              </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
+      {selectedWatch && (
+        <div className="smart-watch-modal show">
+          <div className="smart-watch-modal-content">
+            <span className="smart-watch-close" onClick={closeModal}>&times;</span>
+            <img
+              src={selectedWatch.image}
+              alt={selectedWatch.title}
+              className="smart-watch-modal-image"
+            />
+            <h3 className="smart-watch-title">{selectedWatch.title}</h3>
+            <p className="smart-watch-modal-desc">{selectedWatch.description}</p>
+            <p className="smart-watch-price">{selectedWatch.price}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Savy;
+export default TechSavyWatches;

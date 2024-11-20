@@ -1,0 +1,191 @@
+/* Responsive CSS for Watch Component */
+.news {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .news {
+    flex-direction: row;
+    padding: 20px 45px 20px 15px;
+  }
+}
+
+.weber-hot {
+  width: 70%;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .weber-hot {
+    width: 60%;
+  }
+}
+
+.weber-hot-text {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  z-index: 10;
+  color: #fff;
+  max-width: 90%;
+}
+
+.weber-hot-text h4 {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.weber-hot-text h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.brown-watch {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+}
+
+.nav-text-3 {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-text-3 {
+    width: 35%;
+  }
+}
+
+.new-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.new-a-tags {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.time-texti {
+  margin-bottom: 20px;
+}
+
+.time-texti h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.time-texti p {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.guarennted .colors-3 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.guarennted button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.guarennted button:hover {
+  background-color: #fff;
+}
+
+.images-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.image-item {
+  position: relative;
+  width: calc(33.333% - 10px);
+  max-width: 150px;
+  cursor: pointer;
+}
+
+.iphone-watch {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.iphone-watch-text {
+  position: absolute;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  z-index: 3;
+  top: 10px;
+  left: 10px;
+  max-width: calc(100% - 20px);
+}
+
+.recommendations {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.people-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.recom-num {
+  background: #000;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+/* Additional responsive adjustments */
+@media screen and (max-width: 480px) {
+  .weber-hot-text {
+    top: 5%;
+    left: 3%;
+  }
+
+  .weber-hot-text h4 {
+    font-size: 1rem;
+  }
+
+  .weber-hot-text h2 {
+    font-size: 1.2rem;
+  }
+
+  .image-item {
+    width: calc(50% - 10px);
+  }
+}

@@ -1,0 +1,169 @@
+/* Base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'InstrumentSans-Regular', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Banner section */
+.banner {
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.banner-text {
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  padding: 20px;
+}
+
+.banner-text h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.server p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.banner-navigation {
+  margin: 20px 0;
+}
+
+.banner-navigation > button {
+  background-color: #000;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-navigation > button:hover {
+  color: #000;
+  background-color: #ccad2f;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.icons .social-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.icons .social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive utilities */
+@media (max-width: 1200px) {
+  .banner-text h1 {
+    font-size: 2rem;
+  }
+
+  .server p {
+    font-size: 0.9rem;
+  }
+
+  .banner-navigation > button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .banner-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .server p {
+    font-size: 0.85rem;
+  }
+
+  .icons .social-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .banner-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .server p {
+    font-size: 0.8rem;
+  }
+
+  .banner-navigation > button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .icons .social-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-text h1 {
+    font-size: 1.2rem;
+  }
+
+  .server p {
+    font-size: 0.75rem;
+  }
+
+  .banner-navigation > button {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .icons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .icons .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

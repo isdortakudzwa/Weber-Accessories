@@ -1,115 +1,124 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import white from '../src/components/images/white.png';
-import pank from '../src/components/images/pank.png';
-import pank2 from '../src/components/images/pank2.png';
-import arrow1 from '../src/components/images/Group 7.png';
-import arrow2 from '../src/components/images/Group 8.png';
-import cart from '../src/components/images/mage_shopping-cart-fill.png';
+import './popular.css';
+
+// Import images
+import white from '../src/pages/images/white.png';
+import pank from '../src/pages/images/pank.png';
+import pank2 from '../src/pages/images/pank2.png';
+import arrow1 from '../src/pages/images/Group 7.png';
+import arrow2 from '../src/pages/images/Group 8.png';
+import cart from '../src/pages/images/mage_shopping-cart-fill.png';
+
+const watches = [
+  { id: 1, name: "Plain Silicon", price: 69.90, image: white, category: "Basic" },
+  { id: 2, name: "Apple SmartWatch X8 Ultra", price: 65.99, image: white, category: "Premium" },
+  { id: 3, name: "Redmi Silicon", price: 54.89, image: pank, category: "Budget" },
+  { id: 4, name: "Smart Watch X8", price: 45.58, image: pank2, category: "Budget" },
+  { id: 5, name: "Apple SmartWatch Pro", price: 89.99, image: white, category: "Premium" },
+  { id: 6, name: "Fitness Tracker Elite", price: 59.50, image: pank, category: "Sports" },
+];
 
 function Popular() {
   const navigate = useNavigate();
-
-  // Watches data
-  const watches = [
-    { name: "Plain Silicon", price: 69.90, image: white },
-    { name: "Apple SmartWatch X8 Ultra", price: 65.99, image: white },
-    { name: "Redmi Silicon", price: 54.89, image: white  },
-    { name: "Smart Watch X8", price: 45.58, image: white },
-    { name: "Apple SmartWatch X8 Ultra", price: 65.99, image: white },
-    { name: "Redmi Silicon", price: 54.89, image: pank },
-    { name: "Smart Watch X8", price: 45.58, image: pank2 },
-    { name: "Smart Watch X8", price: 45.58, image: pank2 },
-  ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsToShow = 3;
 
-  const handleAddToCart = (name, price, image) => {
-    const newItem = { name, price, image, quantity: 1, id: Date.now() };
-    const existingCart = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const existingItemIndex = existingCart.findIndex(item => item.name === name);
+  // Memoized navigation and cart handling
+  const handleAddToCart = useCallback((watch) => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItemIndex = cartItems.findIndex(item => item.id === watch.id);
 
     let updatedCart;
     if (existingItemIndex >= 0) {
-      updatedCart = existingCart.map((item, index) => 
-        index === existingItemIndex ? { ...item, quantity: item.quantity + 1 } : item
+      updatedCart = cartItems.map((item, index) => 
+        index === existingItemIndex 
+          ? { ...item, quantity: item.quantity + 1 } 
+          : item
       );
     } else {
-      updatedCart = [...existingCart, newItem];
+      updatedCart = [...cartItems, { ...watch, quantity: 1 }];
     }
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-    alert('Item added to cart successfully!');
-  };
+    
+    // Optional: Add toast or snackbar notification
+    alert(`${watch.name} added to cart`);
+  }, []);
 
-  const nextWatch = () => {
-    if (currentIndex < watches.length - cardsToShow) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+  const handleDirectPurchase = useCallback((watch) => {
+    handleAddToCart(watch);
+    navigate('/cart');
+  }, [handleAddToCart, navigate]);
 
-  const prevWatch = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
+  // Memoized navigation logic
+  const nextWatch = useCallback(() => {
+    setCurrentIndex(prev => 
+      prev < watches.length - cardsToShow ? prev + 1 : prev
+    );
+  }, [watches.length, cardsToShow]);
 
-  // Get only the watches that should be visible
-  const visibleWatches = watches.slice(currentIndex, currentIndex + cardsToShow);
+  const prevWatch = useCallback(() => {
+    setCurrentIndex(prev => prev > 0 ? prev - 1 : prev);
+  }, []);
+
+  // Memoized visible watches
+  const visibleWatches = useMemo(() => 
+    watches.slice(currentIndex, currentIndex + cardsToShow), 
+    [currentIndex, cardsToShow]
+  );
 
   return (
     <div className="main-popular">
-      <h2 className="pop-first-h2">Popular</h2>
+      <h2 className="pop-first-h2">Popular Watches</h2>
+      
       <div className="carousel-container">
         <div className="sub-popular">
           {visibleWatches.map((watch, index) => (
-            <div className={`sub${index + 1}`} key={index}>
+            <div className={`watch-card watch-${index + 1}`} key={watch.id}>
               <h4>{watch.name}</h4>
-              <img src={watch.image} alt="watchimage" className="cool-img-watch" />
+              <img 
+                src={watch.image} 
+                alt={watch.name} 
+                className="cool-img-watch" 
+              />
               <div className="price-cart">
-                <p className="sim-p">WEBERWATCHES</p>
-                <div className="order-price">
-                  <p>${watch.price.toFixed(2)}</p>
-                  <button onClick={() => handleAddToCart(watch.name, watch.price, watch.image)}>
-                    Order Now
-                  </button>
+                <p className="brand-label">WEBERWATCHES</p>
+                <div className="order-section">
+                  <p className="watch-price">${watch.price.toFixed(2)}</p>
+                  <div className="watch-actions">
+                    <button 
+                      className="order-btn"
+                      onClick={() => handleDirectPurchase(watch)}
+                    >
+                      Buy Now
+                    </button>
+                    <img
+                      src={cart}
+                      alt="Add to Cart"
+                      className="cart-icon"
+                      onClick={() => handleAddToCart(watch)}
+                    />
+                  </div>
                 </div>
-                <img
-                  src={cart}
-                  alt="cartimage"
-                  className="pop-cart"
-                  onClick={() => {
-                    handleAddToCart(watch.name, watch.price, watch.image);
-                    navigate('/cart');
-                  }}
-                  style={{ cursor: 'pointer' }}
-                />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="arrows">
+      <div className="carousel-navigation">
         <img 
           src={arrow2} 
-          alt="previous" 
-          onClick={prevWatch} 
-          style={{ 
-            cursor: currentIndex === 0 ? 'not-allowed' : 'pointer',
-            marginRight: '10px',
-            opacity: currentIndex === 0 ? 0.5 : 1
-          }} 
+          alt="Previous" 
+          className={`nav-arrow ${currentIndex === 0 ? 'disabled' : ''}`}
+          onClick={prevWatch}
         />
         <img 
           src={arrow1} 
-          alt="next" 
-          onClick={nextWatch} 
-          style={{ 
-            cursor: currentIndex >= watches.length - cardsToShow ? 'not-allowed' : 'pointer',
-            opacity: currentIndex >= watches.length - cardsToShow ? 0.5 : 1
-          }} 
+          alt="Next" 
+          className={`nav-arrow ${currentIndex >= watches.length - cardsToShow ? 'disabled' : ''}`}
+          onClick={nextWatch}
         />
       </div>
     </div>
