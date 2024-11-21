@@ -54,7 +54,6 @@ function Navi() {
 
   return (
     <div className="news">
-      {/* Weber Hot Section */}
       <div className="weber-hot">
         <div className="weber-hot-text">
           <h4 className="h4-hot">Hot Trend</h4>
@@ -83,21 +82,14 @@ function Navi() {
         />
       </div>
 
-      {/* Navigation Text Section */}
       <div className="nav-text-3">
         <div className="new-navbar">
-          <a href="/" className="new-a-tags">
-            Newest
-          </a>
-          <a href="/" className="new-a-tags">
-            For Men
-          </a>
-          <a href="/" className="new-a-tags">
-            For Ladies
-          </a>
-          <a href="/" className="new-a-tags">
-            Contact Us
-          </a>
+          <ul>
+            <li><a href="/">Newest</a></li>
+            <li><a href="/">For Men</a></li>
+            <li><a href="/">For Ladies</a></li>
+            <li><a href="/">Contact Us</a></li>
+          </ul>
         </div>
 
         <div className="time-texti">

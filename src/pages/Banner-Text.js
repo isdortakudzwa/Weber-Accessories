@@ -62,6 +62,14 @@ function Text({ currentBannerIndex, setCurrentBannerIndex }) {
         }}
       >
         <Navbar currentBannerIndex={currentBannerIndex} />
+        <div className="icons">
+          <div className="icon-images">
+            <h5 className='colored-h1'>WEBERWATCHES</h5>
+            <img src={facebook} alt="facebookpic" className='social-icon' loading="lazy" />
+            <img src={instagram} alt="instagram" className='social-icon' loading="lazy" />
+            <img src={whatsapp} alt="whatsapp" className='social-icon' loading="lazy" />
+          </div>
+        </div>
 
         <div className='banner-text'>
           <h1 className='asas'>{bannerContents[currentIndex].title}</h1>
@@ -71,15 +79,6 @@ function Text({ currentBannerIndex, setCurrentBannerIndex }) {
 
           <div className="banner-navigation">
             <button onClick={nextBanner}>More <span>&#x2192;</span></button>
-          </div>
-        </div>
-
-        <div className="icons">
-          <div className="icon-images">
-            <h5 className='colored-h1'>WEBERWATCHES</h5>
-            <img src={facebook} alt="facebookpic" className='social-icon' />
-            <img src={instagram} alt="instagram" className='social-icon' />
-            <img src={whatsapp} alt="whatsapp" className='social-icon' />
           </div>
         </div>
       </div>

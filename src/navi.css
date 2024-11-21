@@ -3,27 +3,31 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 15px;
+  padding: 40px 20px;
+  background: #fff;
   max-width: 1200px;
   margin: 0 auto;
-  background: #000;
 }
 
 @media screen and (min-width: 768px) {
   .news {
     flex-direction: row;
-    padding: 20px 45px 20px 15px;
+    align-items: stretch;
   }
 }
 
 .weber-hot {
-  width: 70%;
+  width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @media screen and (min-width: 768px) {
   .weber-hot {
     width: 60%;
+    margin-right: 20px;
   }
 }
 
@@ -34,28 +38,36 @@
   z-index: 10;
   color: #fff;
   max-width: 90%;
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
 }
 
 .weber-hot-text h4 {
-  font-size: 1.2rem;
-  margin: 0;
-  padding: 5px 0;
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .weber-hot-text h2 {
   font-size: 1.5rem;
-  margin: 0;
-  padding: 5px 0;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
 }
 
 .brown-watch {
-  width: 80%;
+  width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .nav-text-3 {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -65,92 +77,158 @@
 }
 
 .new-navbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.new-a-tags {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.9rem;
-  padding: 5px 10px;
-}
-
-.time-texti {
   margin-bottom: 20px;
 }
 
+.new-navbar ul {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 0;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+
+.new-navbar li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.new-navbar li a:hover {
+  background-color: #f4f4f4;
+}
+
+.time-texti {
+  text-align: center;
+  padding: 0 15px;
+}
+
 .time-texti h2 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+  font-size: 1.8rem;
+  margin: 10px 0;
+  color: #333;
+  margin-top: 10%;
 }
 
 .time-texti p {
-  font-size: 1rem;
-  color: #fff;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 10px 0;
 }
 
-.guarennted .colors-3 {
+.guarennted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.colors-3 {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
 }
 
+.colors-3 p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.colorhunt1, 
+.colorhunt2, 
+.colorhunt3 {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.colorhunt1 { background-color: red; }
+.colorhunt2 { background-color: green; }
+.colorhunt3 { background-color: blue; }
+
+.colorhunt1:hover,
+.colorhunt2:hover,
+.colorhunt3:hover {
+  transform: scale(1.2);
+}
+
 .guarennted button {
   background-color: orange;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  max-width: 200px;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .guarennted button:hover {
-  background-color: #fff;
+  background-color: #ff8c00;
 }
 
 .images-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
+  gap: 15px;
+  padding: 0 15px;
 }
 
 .image-item {
   position: relative;
-  width: calc(33.333% - 10px);
-  max-width: 150px;
+  width: calc(33.333% - 15px);
+  max-width: 200px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+  transform: scale(1.05);
 }
 
 .iphone-watch {
   width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .iphone-watch-text {
   position: absolute;
-  color: white;
-  font-size: 0.6rem;
-  font-weight: bold;
-  z-index: 3;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
-  max-width: calc(100% - 20px);
+  right: 10px;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.iphone-watch-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 0.9rem;
+}
+
+.iphone-watch-text h4 {
+  margin: 0;
+  font-size: 0.8rem;
 }
 
 .recommendations {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: 10px;
 }
@@ -160,32 +238,39 @@
   height: 35px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid white;
 }
 
 .recom-num {
   background: #000;
   border-radius: 10px;
   color: white;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 0.8rem;
 }
 
-/* Additional responsive adjustments */
-@media screen and (max-width: 480px) {
-  .weber-hot-text {
-    top: 5%;
-    left: 3%;
-  }
-
-  .weber-hot-text h4 {
-    font-size: 1rem;
-  }
-
-  .weber-hot-text h2 {
-    font-size: 1.2rem;
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .news {
+    flex-direction: column;
   }
 
   .image-item {
-    width: calc(50% - 10px);
+    width: calc(50% - 15px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-item {
+    width: 100%;
+  }
+
+  .new-navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .new-navbar li {
+    margin-bottom: 10px;
   }
 }
